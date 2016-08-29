@@ -7,37 +7,40 @@ class Person(object):
 		self.surname = surname
 		self.number = number
 
-class Student(object):
+class Student(Person):
 
 	POSTGRADUATE = "POSTGRADUATE"
 	UNDERGRADUATE = "UNDERGRADUATE"
 
-	def __init__(self, first_name, middle_name, surname, number, student_type):
-		self.first_name = first_name
-		self.middle_name = middle_name
-		self.surname = surname
-		self.number = number
+	def __init__(self, student_type, *args):
+		# self.first_name = first_name
+		# self.middle_name = middle_name
+		# self.surname = surname
+		# self.number = number
 		self.student_type = student_type
 		self.classes = []
+		super(Student, self).__init__(*args)
+		
 
 	def enrol(self, course):
 		self.classes.append(course)
 
 
-class StaffMember(object):	
+class StaffMember(Person):	
 	TEMPORARY = "TEMPORARY"
 	PERMANENT = "PERMANENT"
 
-	def __init__(self, membertype, first_name, middle_name, surname, number):
-		self.first_name = first_name
-		self.middle_name = middle_name
-		self.surname = surname 
-		self.number = number
+	def __init__(self, membertype, *args):
+		# self.first_name = first_name
+		# self.middle_name = middle_name
+		# self.surname = surname 
+		# self.number = number
 		self.employment_type = membertype
+		super(StaffMember, self).__init__(*args)
 
 class Lecturer (StaffMember):
 
-	def __init__(self, membertype, first_name, middle_name, surname, number, courses_taught):
+	def __init__(self, membertype, first_name, middle_name, surname, number):
 		StaffMember.__init__(self, membertype, first_name, middle_name, surname, number)
 		self.courses_taught = []
 
@@ -85,7 +88,7 @@ print staff_member.number #"535"
 
 
 #Lecturer
-helen = Lecturer(StaffMember.PERMANENT, "Helen", "B.", "Jess", "1234", "courses_taught")
+helen = Lecturer(StaffMember.PERMANENT, "Helen", "B.", "Jess", "1234")
 print helen.employment_type #PERMANENT
 print helen.first_name #"Helen"
 print helen.middle_name #"B."
@@ -94,3 +97,5 @@ print helen.number #"1234"
 helen.assign_teaching("Introduction to data science")
 helen.assign_teaching("Introduction to DBs")
 print helen.courses_taught #['Introduction to data science', 'Introduction to DBs']
+
+#all work is done
