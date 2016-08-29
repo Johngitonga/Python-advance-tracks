@@ -18,12 +18,32 @@ class Student(object):
 		self.surname = surname
 		self.number = number
 		self.student_type = student_type
+		self.classes = []
 
-	def enrol(self):
-		return self.enrol
+	def enrol(self, course):
+		self.classes.append(course)
 
 
-	
+class StaffMember(object):	
+	TEMPORARY = "TEMPORARY"
+	PERMANENT = "PERMANENT"
+
+	def __init__(self, membertype, first_name, middle_name, surname, number):
+		self.first_name = first_name
+		self.middle_name = middle_name
+		self.surname = surname 
+		self.number = number
+		self.employment_type = membertype
+
+class Lecturer (StaffMember):
+
+	def __init__(self, membertype, first_name, middle_name, surname, number, courses_taught):
+		StaffMember.__init__(self, membertype, first_name, middle_name, surname, number)
+		self.courses_taught = []
+
+	def assign_teaching(self, courses):
+		self.courses_taught.append(courses)
+
 	
 #Random person 
 random_person = Person("Johnson", "Mwelusi", "Mwema", 0000)
@@ -33,7 +53,7 @@ print random_person.surname #Mwema
 print random_person.number #"0000"
 
 # Student 1
-jane = Student(Student.POSTGRADUATE, "Jane", "Smith", "Thomson" 0000, "POSTGRADUATE", classes=['Introduction to data science', 'IOT'])
+jane = Student(Student.POSTGRADUATE, "Jane", "Smith", "Thomson" "0000", "POSTGRADUATE")
 print jane.first_name #"Jane"
 print jane.middle_name #"Smith"
 print jane.surname #Thomson
@@ -65,7 +85,7 @@ print staff_member.number #"535"
 
 
 #Lecturer
-helen = Lecturer(StaffMember.PERMANENT, "Helen", "B.", "Jess", "1234")
+helen = Lecturer(StaffMember.PERMANENT, "Helen", "B.", "Jess", "1234", "courses_taught")
 print helen.employment_type #PERMANENT
 print helen.first_name #"Helen"
 print helen.middle_name #"B."
