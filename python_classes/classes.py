@@ -13,10 +13,6 @@ class Student(Person):
 	UNDERGRADUATE = "UNDERGRADUATE"
 
 	def __init__(self, student_type, *args):
-		# self.first_name = first_name
-		# self.middle_name = middle_name
-		# self.surname = surname
-		# self.number = number
 		self.student_type = student_type
 		self.classes = []
 		super(Student, self).__init__(*args)
@@ -31,17 +27,14 @@ class StaffMember(Person):
 	PERMANENT = "PERMANENT"
 
 	def __init__(self, membertype, *args):
-		# self.first_name = first_name
-		# self.middle_name = middle_name
-		# self.surname = surname 
-		# self.number = number
+		
 		self.employment_type = membertype
 		super(StaffMember, self).__init__(*args)
 
 class Lecturer (StaffMember):
 
-	def __init__(self, membertype, first_name, middle_name, surname, number):
-		StaffMember.__init__(self, membertype, first_name, middle_name, surname, number)
+	def __init__(self, membertype, *args):
+		StaffMember.__init__(self, membertype, *args)
 		self.courses_taught = []
 
 	def assign_teaching(self, courses):
