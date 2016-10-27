@@ -15,9 +15,9 @@ if door == open: button clicked
  
 class GarageDoor(object):
 	status = "closed"
-	def __init__(self):
-		# self.status = "closed"
-		pass
+	# def __init__(self):
+	# 	# self.status = "closed"
+	# 	pass
 
 	@classmethod
 	def cycle_complete(self):
@@ -47,21 +47,20 @@ class GarageDoor(object):
 			GarageDoor.status = 'stoped while closing'
 			print GarageDoor.status
 
+		elif GarageDoor.status == 'stoped while closing':
+			GarageDoor.status = 'opening' 
+			print GarageDoor.status
+
 		elif GarageDoor.status == 'stoped while opening':
 			GarageDoor.status = 'closing'
 			print GarageDoor.status
 
-		elif GarageDoor.status == 'stoped while closing':
-			GarageDoor.status = 'opening' 
-			print GarageDoor.status
+		
 			
 	def transition(self, func):
 		func()
 
     	
-
-
-
 
 # status = "closed"
 # door = GarageDoor()
@@ -85,6 +84,19 @@ door_on_day1.transition(GarageDoor.button_clicked)
 door_on_day1.transition(GarageDoor.cycle_complete)
 print "The final state of the door is {}".format(door_on_day1.status) # # Note state is not a function 
 
+print "********************************"
+doorTest = GarageDoor()
+doorTest.transition(GarageDoor.button_clicked) # Note button_clicked is a function
+doorTest.transition(GarageDoor.cycle_complete) #  Note cycle_complete is a function
+doorTest.transition(GarageDoor.button_clicked)
+doorTest.transition(GarageDoor.button_clicked)
+doorTest.transition(GarageDoor.button_clicked)
+doorTest.transition(GarageDoor.cycle_complete)
+doorTest.transition(GarageDoor.button_clicked)
+doorTest.transition(GarageDoor.cycle_complete)
+doorTest.transition(GarageDoor.button_clicked)
+print "The final state of the door is {}".format(doorTest.status)
+print "********************************"
 
 # Test case 2 Output(https://github.com/tunapanda/Python-advance-tracks/blob/master/images/output2.png)
 # The next day, he just had to do more experiments with the door. He clicked clicked a lot.
